@@ -79,7 +79,8 @@ function App() {
           </div>
 
           <div className="relative flex justify-center md:justify-end animate-float order-1 md:order-2 mt-8 md:mt-0">
-            <div className="glass-card p-6 rounded-[2.5rem] w-56 md:w-64 text-center border-t border-white/10 shadow-2xl shadow-cyan-900/20 backdrop-blur-xl bg-white/5">
+            {/* GLASS CARD (FOUNDER) */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-[2.5rem] w-56 md:w-64 text-center border-t border-white/10 shadow-2xl shadow-cyan-900/20">
               <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-5">
                 <img src="/wildan.jpg" className="rounded-[2rem] object-cover w-full h-full shadow-lg border border-white/10" alt="Wildan Abdillah" />
                 <div className="absolute -bottom-3 -right-3 bg-cyan-400 text-black text-[8px] md:text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter border-4 border-[#030303]">Founder</div>
@@ -105,8 +106,6 @@ function App() {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10"></div>
 
         <div className="animate-marquee flex gap-16 px-6 opacity-100 grayscale-0 md:opacity-50 md:grayscale md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500">
-          
-          {/* --- LOOP 1 --- */}
           <div className="flex items-center gap-3"><svg viewBox="-10.5 -9.45 21 18.9" className="w-8 h-8 text-[#61DAFB] fill-current drop-shadow-[0_0_8px_rgba(97,218,251,0.6)]"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" strokeWidth="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><span className="font-bold text-lg tracking-widest text-gray-300">REACT</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#4285F4] drop-shadow-[0_0_8px_rgba(66,133,244,0.6)]"><path d="M19.423 7.18H14.83V2.46a.54.54 0 0 0-.91-.39L2.8 13.16a.54.54 0 0 0 .39.91h4.74v4.73a.54.54 0 0 0 .91.39l11-11.1a.54.54 0 0 0-.417-.91Z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">APPSHEET</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#38BDF8] drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">TAILWIND</span></div>
@@ -114,14 +113,13 @@ function App() {
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">GITHUB</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="none" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M6 12C6 15.3137 8.68629 18 12 18V12H6Z" fill="#0ACF83"/><path d="M12 18C15.3137 18 18 15.3137 18 12V6H12V18Z" fill="#1ABCFE"/><path d="M6 6C6 2.68629 8.68629 0 12 0H18V6H6Z" fill="#FF7262"/><path d="M6 12C6 8.68629 8.68629 6 12 6V12H6Z" fill="#F24E1E"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">FIGMA</span></div>
 
-          {/* --- LOOP 2 --- */}
+          {/* Loop 2 */}
           <div className="flex items-center gap-3"><svg viewBox="-10.5 -9.45 21 18.9" className="w-8 h-8 text-[#61DAFB] fill-current drop-shadow-[0_0_8px_rgba(97,218,251,0.6)]"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" strokeWidth="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><span className="font-bold text-lg tracking-widest text-gray-300">REACT</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#4285F4] drop-shadow-[0_0_8px_rgba(66,133,244,0.6)]"><path d="M19.423 7.18H14.83V2.46a.54.54 0 0 0-.91-.39L2.8 13.16a.54.54 0 0 0 .39.91h4.74v4.73a.54.54 0 0 0 .91.39l11-11.1a.54.54 0 0 0-.417-.91Z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">APPSHEET</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#38BDF8] drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">TAILWIND</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-[#23A9F2] drop-shadow-[0_0_8px_rgba(35,169,242,0.6)]"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.245.096L.29 7.304a.995.995 0 0 0 .012 1.402l10.144 9.642-9.917 6.397a.997.997 0 0 0-.012 1.659l1.38 1.114c.39.314.957.285 1.307-.06l4.093-3.167 9.543 8.854a1.494 1.494 0 0 0 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 29.58V3.924a1.5 1.5 0 0 0-.85-1.337z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">VSCODE</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">GITHUB</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="none" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M6 12C6 15.3137 8.68629 18 12 18V12H6Z" fill="#0ACF83"/><path d="M12 18C15.3137 18 18 15.3137 18 12V6H12V18Z" fill="#1ABCFE"/><path d="M6 6C6 2.68629 8.68629 0 12 0H18V6H6Z" fill="#FF7262"/><path d="M6 12C6 8.68629 8.68629 6 12 6V12H6Z" fill="#F24E1E"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">FIGMA</span></div>
-
         </div>
       </div>
 
@@ -174,7 +172,7 @@ function App() {
             { num: "02", title: "Web Development", desc: "Bikin website yang nggak cuma keren, tapi juga ngebut. Landing page, Company Profile, sampai Web Apps." },
             { num: "03", title: "Visual Branding", desc: "Sinergi dengan Storydesto & Destograph untuk kebutuhan konten visual yang selaras dengan identitas digitalmu." }
           ].map((item) => (
-            <div key={item.num} className="glass-card p-8 md:p-10 rounded-[2rem] hover:bg-white/10 transition duration-500 group border border-white/5">
+            <div key={item.num} className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/10 transition duration-500 group">
               <div className="text-4xl font-black text-cyan-400 md:text-white/10 mb-6 md:group-hover:text-cyan-400 transition duration-500">{item.num}</div>
               <h3 className="text-xl font-bold mb-4">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
@@ -226,29 +224,21 @@ function App() {
           Start Project via WhatsApp
         </a>
 
-        {/* --- SOCIAL MEDIA ICONS (BARU DITAMBAHKAN) --- */}
+        {/* --- SOCIAL MEDIA ICONS --- */}
         <div className="flex gap-6 justify-center mt-12 md:mt-16">
-           {/* Instagram */}
            <a href="https://instagram.com/idan_abdll" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
            </a>
-           
-           {/* LinkedIn */}
-           <a href="www.linkedin.com/in/wildan-abdillah-099a8b247" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
+           <a href="https://www.linkedin.com/in/wildan-abdillah-099a8b247" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
            </a>
-
-           {/* GitHub */}
            <a href="https://github.com/amdwildanabdillah" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
            </a>
-
-           {/* Discord (Optional, kalau ga punya hapus aja div ini) */}
            <a href="https://discord.com/users/811059299429384249" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M9 12h.01M15 12h.01M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
            </a>
         </div>
-
       </section>
 
       <footer className="border-t border-white/10 py-10 text-center text-white/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.3em]">
