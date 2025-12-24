@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Fungsi scroll smooth ke ID tertentu
+  // Fungsi scroll smooth
   const scrollToSection = (id) => {
     setIsMenuOpen(false); 
     const element = document.getElementById(id);
@@ -94,34 +94,32 @@ function App() {
         </div>
       </section>
 
-      {/* --- TECH STACK (MARQUEE / RUNNING TEXT) --- */}
+      {/* --- TECH STACK (MOBILE FRIENDLY) --- */}
       <div className="py-10 border-y border-white/5 bg-white/5 overflow-hidden relative group">
         
-        {/* Label Powered By (Tetap diem di kiri) */}
+        {/* Label Powered By */}
         <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10 flex items-center pl-12">
            <span className="text-[9px] font-bold uppercase tracking-widest text-cyan-400 bg-black/50 backdrop-blur px-2 py-1 rounded border border-white/10">
              Powered By
            </span>
         </div>
-
-        {/* Gradient Penutup Kanan */}
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10"></div>
 
-        {/* CONTAINER ANIMASI */}
-        <div className="animate-marquee flex gap-16 px-6">
+        {/* CONTAINER ANIMASI: 
+            Update: opacity-100 grayscale-0 (HP langsung berwarna) 
+            md:opacity-50 md:grayscale (Laptop hitam putih dulu) 
+        */}
+        <div className="animate-marquee flex gap-16 px-6 opacity-100 grayscale-0 md:opacity-50 md:grayscale md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500">
           
           {/* --- LOOP 1 --- */}
           <div className="flex items-center gap-3"><svg viewBox="-10.5 -9.45 21 18.9" className="w-8 h-8 text-[#61DAFB] fill-current drop-shadow-[0_0_8px_rgba(97,218,251,0.6)]"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" strokeWidth="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><span className="font-bold text-lg tracking-widest text-gray-300">REACT</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#4285F4] drop-shadow-[0_0_8px_rgba(66,133,244,0.6)]"><path d="M19.423 7.18H14.83V2.46a.54.54 0 0 0-.91-.39L2.8 13.16a.54.54 0 0 0 .39.91h4.74v4.73a.54.54 0 0 0 .91.39l11-11.1a.54.54 0 0 0-.417-.91Z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">APPSHEET</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#38BDF8] drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">TAILWIND</span></div>
-          {/* VSCODE */}
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-[#23A9F2] drop-shadow-[0_0_8px_rgba(35,169,242,0.6)]"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.245.096L.29 7.304a.995.995 0 0 0 .012 1.402l10.144 9.642-9.917 6.397a.997.997 0 0 0-.012 1.659l1.38 1.114c.39.314.957.285 1.307-.06l4.093-3.167 9.543 8.854a1.494 1.494 0 0 0 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 29.58V3.924a1.5 1.5 0 0 0-.85-1.337z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">VSCODE</span></div>
-          {/* GITHUB */}
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">GITHUB</span></div>
-          {/* FIGMA */}
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="none" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"><path d="M6 12C6 15.3137 8.68629 18 12 18V12H6Z" fill="#0ACF83"/><path d="M12 18C15.3137 18 18 15.3137 18 12V6H12V18Z" fill="#1ABCFE"/><path d="M6 6C6 2.68629 8.68629 0 12 0H18V6H6Z" fill="#FF7262"/><path d="M6 12C6 8.68629 8.68629 6 12 6V12H6Z" fill="#F24E1E"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">FIGMA</span></div>
 
-          {/* --- LOOP 2 (DUPLIKAT) --- */}
+          {/* --- LOOP 2 --- */}
           <div className="flex items-center gap-3"><svg viewBox="-10.5 -9.45 21 18.9" className="w-8 h-8 text-[#61DAFB] fill-current drop-shadow-[0_0_8px_rgba(97,218,251,0.6)]"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" strokeWidth="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><span className="font-bold text-lg tracking-widest text-gray-300">REACT</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#4285F4] drop-shadow-[0_0_8px_rgba(66,133,244,0.6)]"><path d="M19.423 7.18H14.83V2.46a.54.54 0 0 0-.91-.39L2.8 13.16a.54.54 0 0 0 .39.91h4.74v4.73a.54.54 0 0 0 .91.39l11-11.1a.54.54 0 0 0-.417-.91Z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">APPSHEET</span></div>
           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#38BDF8] drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">TAILWIND</span></div>
@@ -132,7 +130,7 @@ function App() {
         </div>
       </div>
 
-      {/* --- NEW SECTION: ABOUT VIXEL (SIAPA KITA?) --- */}
+      {/* --- ABOUT SECTION --- */}
       <section id="about" className="max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
           <div className="w-full md:w-1/2 text-center md:text-left">
@@ -165,7 +163,7 @@ function App() {
         </div>
       </section>
 
-      {/* --- SERVICES SECTION --- */}
+      {/* --- SERVICES SECTION (MOBILE FIX) --- */}
       <section id="services" className="max-w-6xl mx-auto px-6 py-20 md:py-32">
         <div className="text-center mb-12 md:mb-20">
           <span className="text-cyan-400 text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">What We Do</span>
@@ -178,7 +176,8 @@ function App() {
             { num: "03", title: "Visual Branding", desc: "Sinergi dengan Storydesto & Destograph untuk kebutuhan konten visual yang selaras dengan identitas digitalmu." }
           ].map((item) => (
             <div key={item.num} className="glass-card p-8 md:p-10 rounded-[2rem] hover:bg-white/10 transition duration-500 group border border-white/5">
-              <div className="text-4xl font-black text-white/10 mb-6 group-hover:text-cyan-400 transition duration-500">{item.num}</div>
+              {/* FIX: text-cyan-400 (HP) -> md:text-white/10 (Laptop) */}
+              <div className="text-4xl font-black text-cyan-400 md:text-white/10 mb-6 md:group-hover:text-cyan-400 transition duration-500">{item.num}</div>
               <h3 className="text-xl font-bold mb-4">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
             </div>
