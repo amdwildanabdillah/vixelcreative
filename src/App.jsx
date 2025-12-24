@@ -127,9 +127,9 @@ function App() {
         </div>
       </div>
 
-      {/* --- ABOUT SECTION --- */}
+      {/* --- ABOUT SECTION (SUDAH FIX ADA ORB) --- */}
       <section id="about" className="relative overflow-hidden max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
-        {/* --- VIXEL ORB TAMBAHAN (Letaknya di Kanan Atas) --- */}
+        {/* --- VIXEL ORB TAMBAHAN --- */}
         <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] -z-10 animate-orb"></div>
 
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
@@ -163,7 +163,7 @@ function App() {
         </div>
       </section>
 
-      {/* --- SERVICES SECTION (MOBILE FIX) --- */}
+      {/* --- SERVICES SECTION --- */}
       <section id="services" className="max-w-6xl mx-auto px-6 py-20 md:py-32">
         <div className="text-center mb-12 md:mb-20">
           <span className="text-cyan-400 text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase">What We Do</span>
@@ -176,7 +176,6 @@ function App() {
             { num: "03", title: "Visual Branding", desc: "Sinergi dengan Storydesto & Destograph untuk kebutuhan konten visual yang selaras dengan identitas digitalmu." }
           ].map((item) => (
             <div key={item.num} className="glass-card p-8 md:p-10 rounded-[2rem] hover:bg-white/10 transition duration-500 group border border-white/5">
-              {/* FIX: text-cyan-400 (HP) -> md:text-white/10 (Laptop) */}
               <div className="text-4xl font-black text-cyan-400 md:text-white/10 mb-6 md:group-hover:text-cyan-400 transition duration-500">{item.num}</div>
               <h3 className="text-xl font-bold mb-4">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
