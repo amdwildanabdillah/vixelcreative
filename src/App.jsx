@@ -22,7 +22,7 @@ function App() {
       {/* --- NAVBAR --- */}
       <nav className="fixed w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div onClick={scrollToTop} className="font-extrabold text-xl md:text-2xl tracking-tighter uppercase cursor-pointer hover:text-cyan-400 transition duration-300 z-50">
-          VIXEL<span className="text-cyan-400">.</span>
+          VIXEL CREATIVE<span className="text-cyan-400">.</span>
         </div>
 
         <div className="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
@@ -105,10 +105,7 @@ function App() {
         </div>
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10"></div>
 
-        {/* CONTAINER ANIMASI: 
-            Update: opacity-100 grayscale-0 (HP langsung berwarna) 
-            md:opacity-50 md:grayscale (Laptop hitam putih dulu) 
-        */}
+        {/* CONTAINER ANIMASI */}
         <div className="animate-marquee flex gap-16 px-6 opacity-100 grayscale-0 md:opacity-50 md:grayscale md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500">
           
           {/* --- LOOP 1 --- */}
@@ -131,7 +128,10 @@ function App() {
       </div>
 
       {/* --- ABOUT SECTION --- */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
+      <section id="about" className="relative overflow-hidden max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
+        {/* --- VIXEL ORB TAMBAHAN (Letaknya di Kanan Atas) --- */}
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] -z-10 animate-orb"></div>
+
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
           <div className="w-full md:w-1/2 text-center md:text-left">
              <span className="text-cyan-400 text-[9px] font-bold tracking-[0.3em] uppercase mb-4 block">Who We Are</span>
