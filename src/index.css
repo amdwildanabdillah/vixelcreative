@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-}
+/* Hapus bagian @theme, kita pindah setting font ke tailwind.config.js */
 
 .glass-card {
   @apply bg-white/5 backdrop-blur-xl border border-white/10;
@@ -20,7 +20,6 @@
 }
 .animate-float { animation: float-card 6s ease-in-out infinite; }
 
-/* --- TAMBAHAN BARU BUAT MARQUEE --- */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -29,10 +28,9 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite; /* Kecepatan jalan */
+  animation: marquee 30s linear infinite;
 }
 
-/* Biar pas di-hover dia ngerem (opsional) */
 .animate-marquee:hover {
   animation-play-state: paused;
 }

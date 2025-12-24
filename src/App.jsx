@@ -53,7 +53,7 @@ function App() {
 
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-24 pt-28 pb-10 overflow-hidden">
-        {/* ORB PERTAMA (HERO) */}
+        {/* ORB 1: HERO */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[600px] md:h-[600px] bg-cyan-500/15 rounded-full blur-[80px] md:blur-[120px] -z-10 animate-orb"></div>
 
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
@@ -95,10 +95,8 @@ function App() {
         </div>
       </section>
 
-      {/* --- TECH STACK (MOBILE FRIENDLY) --- */}
+      {/* --- TECH STACK --- */}
       <div className="py-10 border-y border-white/5 bg-white/5 overflow-hidden relative group">
-        
-        {/* Label Powered By */}
         <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10 flex items-center pl-12">
            <span className="text-[9px] font-bold uppercase tracking-widest text-cyan-400 bg-black/50 backdrop-blur px-2 py-1 rounded border border-white/10">
              Powered By
@@ -106,7 +104,6 @@ function App() {
         </div>
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10"></div>
 
-        {/* CONTAINER ANIMASI */}
         <div className="animate-marquee flex gap-16 px-6 opacity-100 grayscale-0 md:opacity-50 md:grayscale md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-500">
           
           {/* --- LOOP 1 --- */}
@@ -131,7 +128,7 @@ function App() {
       {/* --- ABOUT SECTION (SUDAH FIX ADA ORB 2) --- */}
       <section id="about" className="relative overflow-hidden max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
         
-        {/* 🔥 INI DIA MANTRA LINGKARAN NYA 🔥 */}
+        {/* 🔥 INI DIA MANTRA LINGKARAN NYA (ORB 2) 🔥 */}
         <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] -z-10 animate-orb"></div>
 
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
@@ -228,6 +225,30 @@ function App() {
         <a href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20saya%20tertarik%20diskusi%20project." target="_blank" className="bg-white text-black px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-cyan-400 hover:scale-105 transition duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
           Start Project via WhatsApp
         </a>
+
+        {/* --- SOCIAL MEDIA ICONS (BARU DITAMBAHKAN) --- */}
+        <div className="flex gap-6 justify-center mt-12 md:mt-16">
+           {/* Instagram */}
+           <a href="https://instagram.com/idan_abdll" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+           </a>
+           
+           {/* LinkedIn */}
+           <a href="www.linkedin.com/in/wildan-abdillah-099a8b247" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+           </a>
+
+           {/* GitHub */}
+           <a href="https://github.com/amdwildanabdillah" target="_blank" rel="noreferrer" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+           </a>
+
+           {/* Discord (Optional, kalau ga punya hapus aja div ini) */}
+           <a href="https://discord.com/users/811059299429384249" className="group p-3 rounded-full border border-white/10 hover:border-cyan-400 hover:bg-cyan-400/10 transition duration-300">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-cyan-400 transition"><path d="M9 12h.01M15 12h.01M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+           </a>
+        </div>
+
       </section>
 
       <footer className="border-t border-white/10 py-10 text-center text-white/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.3em]">
