@@ -53,6 +53,7 @@ function App() {
 
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-24 pt-28 pb-10 overflow-hidden">
+        {/* ORB PERTAMA (HERO) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[600px] md:h-[600px] bg-cyan-500/15 rounded-full blur-[80px] md:blur-[120px] -z-10 animate-orb"></div>
 
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
@@ -127,9 +128,10 @@ function App() {
         </div>
       </div>
 
-      {/* --- ABOUT SECTION (SUDAH FIX ADA ORB) --- */}
+      {/* --- ABOUT SECTION (SUDAH FIX ADA ORB 2) --- */}
       <section id="about" className="relative overflow-hidden max-w-6xl mx-auto px-6 py-24 md:py-32 border-b border-white/5">
-        {/* --- VIXEL ORB TAMBAHAN --- */}
+        
+        {/* 🔥 INI DIA MANTRA LINGKARAN NYA 🔥 */}
         <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] -z-10 animate-orb"></div>
 
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
