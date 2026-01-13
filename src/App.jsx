@@ -250,7 +250,7 @@ function App() {
       </section>
 
       <footer className="border-t border-white/10 py-10 text-center text-white/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.3em]">
-        &copy; 2025 VIXEL Creative. Surabaya, Indonesia.
+        &copy; 2026 VIXEL Creative. Surabaya, Indonesia.
       </footer>
     </div>
   );
