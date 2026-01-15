@@ -16,16 +16,16 @@
 }
 .animate-float { animation: float-card 6s ease-in-out infinite; }
 
-/* --- Marquee --- */
+/* --- Marquee (FIXED) --- */
 @keyframes marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-50%); } /* Geser 50% karena ada 2 set item */
 }
+
 .animate-marquee {
   display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+  width: max-content; /* Biar lebarnya mengikuti konten, bukan layar */
+  animation: marquee 30s linear infinite; /* Jalan terus tanpa henti */
 }
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
+
+/* BAGIAN HOVER PAUSED SUDAH DIHAPUS */
