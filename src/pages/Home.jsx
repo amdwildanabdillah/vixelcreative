@@ -277,7 +277,7 @@ function Home() {
               Jangan biarkan idemu menguap begitu saja. Mari kita realisasikan menjadi sistem yang efisien dan visual yang memukau.
             </p>
             <a 
-              href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20saya%20tertarik%20diskusi%20project." 
+              href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20saya%20tertarik%20untuk%20diskusi%20project." 
               target="_blank"
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-cyan-400 hover:scale-105 transition duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
