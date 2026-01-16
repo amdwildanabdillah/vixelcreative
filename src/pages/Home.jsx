@@ -40,7 +40,19 @@ function Home() {
       github: 'https://github.com/amdwildanabdillah/storydesto'
     },
     {
-      id: 2,
+        id: 2,
+        title: "Puskeswan Mobile",
+        category: "Android App",
+        client: 'Puskeswan Trenggalek',
+        descShort: "Mobile application for veterinary services management.",
+        descLong: "A dedicated mobile application designed for Puskeswan Trenggalek to manage veterinary services. It features appointment scheduling, medical record tracking for livestock, and real-time reporting for field officers.",
+        stack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL'],
+        images: ['/puskeswan/1.png', '/puskeswan/2.png'], 
+        link: null,
+        github: null,
+      },
+    {
+      id: 3,
       title: "D'Production Profile",
       category: 'Web Dev • Corporate',
       client: "D'Production House",
@@ -52,7 +64,7 @@ function Home() {
       github: 'https://github.com/amdwildanabdillah/dproductionsub'
     },
     {
-      id: 3,
+      id: 4,
       title: "Personal Portfolio v1",
       category: 'Web Dev • Personal Branding',
       client: 'Personal Project',
@@ -62,19 +74,7 @@ function Home() {
       images: ['/project-portfolio.png'],
       link: 'https://portfoliowildan.my.id/',
       github: null,
-    },
-    {
-        id: 5,
-        title: "Puskeswan Mobile",
-        category: "Android App",
-        client: 'Puskeswan Trenggalek',
-        descShort: "Mobile application for veterinary services management.",
-        descLong: "A dedicated mobile application designed for Puskeswan Trenggalek to manage veterinary services. It features appointment scheduling, medical record tracking for livestock, and real-time reporting for field officers.",
-        stack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL'],
-        images: ['/puskeswan/1.png', '/puskeswan/2.png'], 
-        link: null,
-        github: null,
-      }
+    }
   ];
 
   // --- LOGIC ---
@@ -135,7 +135,7 @@ function Home() {
               Logic by <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Code.</span>
             </h1>
             <p className="text-gray-400 text-sm md:text-lg max-w-lg font-light leading-relaxed mb-8 md:mb-10 mx-auto md:mx-0 px-4 md:px-0">
-              We build efficient business systems and modern eye-catching Websites.
+              We build efficient business systems and modern eye-catching Websites and Applications.
             </p>
             <div className="flex gap-4 justify-center md:justify-start">
               <button onClick={() => scrollToSection('projects')} className="bg-cyan-400 text-black px-6 md:px-8 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white transition duration-300 shadow-lg shadow-cyan-400/20">
