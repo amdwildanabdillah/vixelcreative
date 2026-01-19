@@ -5,19 +5,91 @@ function Works() {
   const [activeProject, setActiveProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const getTechDetails = (techName) => {
-    const name = techName.toLowerCase();
-    if (name.includes('vue')) return { icon: 'ph-file-vue', color: '#4FC08D' };
-    if (name.includes('react')) return { icon: 'ph-atom', color: '#61DAFB' };
-    if (name.includes('flutter')) return { icon: 'ph-lightning', color: '#02569B' }; 
-    if (name.includes('dart')) return { icon: 'ph-brackets-angle', color: '#0175C2' }; 
-    if (name.includes('laravel')) return { icon: 'ph-file-code', color: '#FF2D20' };
-    if (name.includes('tailwind')) return { icon: 'ph-wind', color: '#38B2AC' };
-    if (name.includes('figma')) return { icon: 'ph-figma-logo', color: '#F24E1E' }; 
-    if (name.includes('github')) return { icon: 'ph-github-logo', color: '#ffffff' }; 
-    if (name.includes('appsheet')) return { icon: 'ph-paper-plane-tilt', color: '#4285F4' };
-    return { icon: 'ph-code', color: '#22d3ee' }; 
-  };
+  // --- HELPER: MAPPING ICON & WARNA BRAND (LENGKAP) ---
+// --- HELPER: MAPPING ICON & WARNA BRAND (UPDATED) ---
+const getTechDetails = (techName) => {
+  const name = techName.toLowerCase();
+
+  // --- FRONTEND FRAMEWORKS ---
+  if (name.includes('vue')) return { icon: 'ph-file-vue', color: '#4FC08D' };
+  if (name.includes('react')) return { icon: 'ph-atom', color: '#61DAFB' };
+  if (name.includes('vite')) return { icon: 'ph-lightning', color: '#646CFF' };
+  if (name.includes('framer')) return { icon: 'ph-framer-logo', color: '#0055FF' };
+
+  // --- UI LIBRARIES & FONTS ---
+  // Hapus 'google' disini biar logic bawah jalan
+  if (name.includes('element')) return { icon: 'ph-layout', color: '#409EFF' }; 
+  if (name.includes('tailwind')) return { icon: 'ph-wind', color: '#38B2AC' };
+  if (name.includes('bootstrap')) return { icon: 'ph-bootstrap-logo', color: '#7952B3' };
+
+  // --- MOBILE & APP ---
+  if (name.includes('flutter')) return { icon: 'ph-lightning', color: '#02569B' }; 
+  if (name.includes('dart')) return { icon: 'ph-brackets-angle', color: '#0175C2' }; 
+  if (name.includes('android')) return { icon: 'ph-android-logo', color: '#3DDC84' };
+  
+  // --- BACKEND & DB ---
+  if (name.includes('laravel')) return { icon: 'ph-file-code', color: '#FF2D20' };
+  if (name.includes('node')) return { icon: 'ph-nodejs-logo', color: '#339933' };
+  if (name.includes('supabase')) return { icon: 'ph-database', color: '#3ECF8E' }; 
+  if (name.includes('postgresql') || name.includes('postgres')) return { icon: 'ph-database', color: '#336791' }; 
+  if (name.includes('mysql')) return { icon: 'ph-database', color: '#00758F' };
+  if (name.includes('firebase')) return { icon: 'ph-fire', color: '#FFCA28' };
+  
+  // --- DEPLOYMENT & TOOLS ---
+  if (name.includes('vercel')) return { icon: 'ph-triangle', color: '#FFFFFF' }; 
+  if (name.includes('phosphor')) return { icon: 'ph-pencil-circle', color: '#C2E96A' }; 
+
+  // --- LANGUAGES ---
+  if (name.includes('html')) return { icon: 'ph-file-html', color: '#E34F26' };
+  if (name.includes('css')) return { icon: 'ph-file-css', color: '#1572B6' };
+  if (name.includes('javascript') || name.includes('js')) return { icon: 'ph-file-js', color: '#F7DF1E' };
+  if (name.includes('typescript') || name.includes('ts')) return { icon: 'ph-file-ts', color: '#3178C6' };
+  
+  // --- PYTHON & BACKEND ---
+  if (name.includes('python') || name.includes('.py')) return { icon: 'ph-terminal', color: '#3776AB' };
+  if (name.includes('django')) return { icon: 'ph-stack', color: '#092E20' }; 
+  if (name.includes('flask')) return { icon: 'ph-flask', color: '#FFFFFF' };
+
+  // --- NO-CODE & APPSHEET (LOGIC FIX) ---
+  // 1. AppSheet (Cek duluan biar dapet icon pesawat biru)
+  if (name.includes('appsheet')) return { icon: 'ph-paper-plane-tilt', color: '#4285F4' }; 
+  // 2. Google Sheet / Excel (Baru dapet icon table hijau)
+  if (name.includes('sheet') || name.includes('excel')) return { icon: 'ph-table', color: '#0F9D58' }; 
+  // 3. Automation
+  if (name.includes('automation')) return { icon: 'ph-robot', color: '#FF9900' };
+
+  // --- VANILLA / SEO ---
+  if (name.includes('netlify')) return { icon: 'ph-cloud-arrow-up', color: '#00C7B7' }; 
+  if (name.includes('seo')) return { icon: 'ph-magnifying-glass', color: '#FFA500' }; 
+  if (name.includes('responsive')) return { icon: 'ph-device-mobile', color: '#B084FF' }; 
+
+  // --- 3D & ANIMATION ---
+  if (name.includes('three')) return { icon: 'ph-cube', color: '#000000' }; 
+  if (name.includes('spline')) return { icon: 'ph-bezier-curve', color: '#F854C5' }; 
+  if (name.includes('webgl')) return { icon: 'ph-globe', color: '#990000' }; 
+  if (name.includes('blender')) return { icon: 'ph-nut', color: '#E87D0D' }; 
+
+  // --- DESIGN TOOLS ---
+  if (name.includes('figma')) return { icon: 'ph-figma-logo', color: '#F24E1E' }; 
+  if (name.includes('github')) return { icon: 'ph-github-logo', color: '#ffffff' }; 
+  if (name.includes('vscode')) return { icon: 'ph-laptop', color: '#23A9F2' }; 
+  if (name.includes('canva')) return { icon: 'ph-palette', color: '#00C4CC' }; 
+  if (name.includes('illustrator') || name.includes('adobe')) return { icon: 'ph-pen-nib', color: '#FF9A00' };
+
+  // --- GOOGLE SERVICES (LOGIC FIX) ---
+  // 1. Cek Font dulu (Google Fonts) -> Icon Aa Merah
+  if (name.includes('font')) return { icon: 'ph-text-aa', color: '#EA4335' }; 
+  
+  // 2. Cek Google General (Sign-In, Analytics) -> Icon G Biru
+  if (name.includes('google')) return { icon: 'ph-google-logo', color: '#4285F4' };
+
+  // Default
+  return { icon: 'ph-code', color: '#b084ff' }; 
+}
+
+// --- STATE UNTUK FILTER (NEW) ---
+  const [activeFilter, setActiveFilter] = useState('All');
+  const filters = ['All', 'Web Dev', 'Mobile App', 'AppSheet'];
 
   const projects = [
     {
@@ -34,6 +106,24 @@ function Works() {
     },
     {
       id: 2,
+      title: 'Omah Cempe',
+      category: 'Web Dev • Landing Page',
+      client: 'Omah Cempe Kediri',
+      descShort: 'A modern landing page designed to digitalize livestock investment and Aqiqah services.',
+      descLong: 'The official digital platform for Omah Cempe Kediri, designed to bridge traditional farming with modern investment opportunities. Key features include an interactive Profit Sharing Simulator for potential partners, a structured catalog for Aqiqah & Qurban services, and a trust-focused UI highlighting farm transparency. Built to enhance brand credibility and streamline client consultations.',
+      stack: ["React", "Tailwind", "Vite", "Google Maps"],
+      images: [
+        '/omahcempe/1.png', 
+        '/omahcempe/2.png',
+        '/omahcempe/3.png',
+        '/omahcempe/4.png',
+        '/omahcempe/5.png',
+      ], 
+      link: null,
+      github: null
+    },
+    {
+      id: 3,
       title: "D'Production Profile",
       category: 'Web Dev • Corporate',
       client: "D'Production House",
@@ -45,7 +135,7 @@ function Works() {
       github: 'https://github.com/amdwildanabdillah/dproductionsub'
     },
     {
-      id: 3,
+      id: 4,
       title: "Personal Portfolio v1",
       category: 'Web Dev • Personal Branding',
       client: 'Personal Project',
@@ -79,13 +169,78 @@ function Works() {
         ], 
         link: null,
         github: null,
-      }
+      },
+    {
+      id: 6,
+      title: "WildanInvites HQ (Internal Dashboard)",
+      category: "AppSheet Development",
+      client: "WildanInvites Finance (Internal Vixel)",
+      descShort: "Dedicated internal management tool for automated cashflow tracking and financial reporting.",
+      descLong: "A robust internal tool built purely on the AppSheet and Google ecosystem for WildanInvites. It automates cashflow tracking, generates real-time Profit & Loss (P&L) reports, monitors operational expenses, and manages inventory database—all without writing a single line of traditional code. This system provides instant financial clarity and streamlines operational workflows.",
+      stack: ["AppSheet", "Google Sheet", "Automation"],
+      images: [
+            '/wildaninvites/1.png', 
+            '/wildaninvites/2.png',
+            '/wildaninvites/3.png',
+            '/wildaninvites/4.png',
+            '/wildaninvites/5.png',
+            '/wildaninvites/6.png',
+            '/wildaninvites/7.png',
+            '/wildaninvites/8.png',
+          ], 
+      link: null,
+      github: null,
+    },
+    {
+      id: 7,
+      title: 'Personal Bio Link',
+      category: 'Web Dev • Personal Branding',
+      client: 'Personal Project',
+      descShort: 'A centralized gateway for my digital presence and ventures.',
+      descLong: 'A sleek, mobile-first bio link page designed to be the central hub for all my digital ventures. It connects visitors to my Personal Portfolio, Vixel Creative, and Storydesto instantly. Built with Vue.js for high performance and styled with a modern glassmorphism aesthetic.',
+      stack: ["Vue.js", "Google Fonts", "Vercel", "HSTS Security"],
+      images: [
+        '/bio/1.png',
+        '/bio/2.png',
+        '/bio/3.png',
+      ], 
+      link: 'https://bio.portfoliowildan.my.id/',
+      github: null,
+    },    
+    {
+      id: 8,
+      title: 'Digital Invitation',
+      category: 'Web Dev • Invitation',
+      client: 'Personal',
+      descShort: 'Official website for VIXEL Studio showcasing services and portfolio.',
+      descLong: 'The official website for VIXEL Studio, designed to showcase our range of services, portfolio, and client testimonials. The site features a modern design with smooth animations and responsive layouts to ensure an optimal viewing experience across all devices.',
+      stack: ['Vue 3', 'Tailwind', 'Vite', 'Vercel'],
+      images: [
+        '/invite/1.png',
+        '/invite/2.png',
+        '/invite/3.png',
+        '/invite/4.png',
+        '/invite/5.png',
+        '/invite/6.png',
+      ], 
+      link: 'https://wedding-invitation-wildan.vercel.app/',
+      github: null,
+    }
   ];
 
   const openModal = (project) => { setActiveProject(project); setCurrentImageIndex(0); document.body.style.overflow = 'hidden'; };
   const closeModal = () => { setActiveProject(null); document.body.style.overflow = 'auto'; };
   const nextImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev + 1) % activeProject.images.length); };
   const prevImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length); };
+
+  // --- LOGIC FILTER (NEW) ---
+  const filteredProjects = projects.filter(project => {
+    if (activeFilter === 'All') return true;
+    if (activeFilter === 'Web Dev') return project.category.includes('Web Dev');
+    if (activeFilter === 'Mobile App') return project.category.includes('Android') || project.category.includes('Flutter');
+    if (activeFilter === 'AppSheet') return project.category.includes('AppSheet') || project.category.includes('Automation');
+    return false;
+  });
 
   return (
     <section className="pt-32 bg-[#030303] text-white min-h-screen">
@@ -94,21 +249,55 @@ function Works() {
         <p className="text-gray-400 mb-12 max-w-xl">
             Kumpulan karya terpilih yang menggabungkan logika kode dengan estetika visual. Klik project untuk melihat detailnya.
         </p>
+
+        {/* --- FILTER TABS (NEW) --- */}
+        <div className="flex flex-wrap gap-3 mb-10 animate-fade-in-up">
+            {filters.map((filter) => (
+                <button 
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition duration-300 border ${
+                        activeFilter === filter 
+                        ? 'bg-cyan-400 text-black border-cyan-400' 
+                        : 'bg-transparent text-gray-400 border-white/10 hover:border-cyan-400 hover:text-white'
+                    }`}
+                >
+                    {filter}
+                </button>
+            ))}
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {projects.map((project) => (
-            <div key={project.id} onClick={() => openModal(project)} className="group cursor-pointer">
-              <div className="h-[250px] md:h-[350px] rounded-2xl mb-6 overflow-hidden relative border border-white/5 group-hover:border-cyan-400/50 transition duration-500 bg-[#0a0a0a]">
-                <div className="absolute top-0 left-0 w-full h-8 bg-black/60 backdrop-blur-md flex items-center px-4 gap-2 z-20 border-b border-white/5">
+          {filteredProjects.map((project) => (
+            <div key={project.id} onClick={() => openModal(project)} className="group cursor-pointer animate-fade-in-up">
+              
+              {/* --- CARD CONTAINER BARU (Tanpa Fixed Height) --- */}
+              <div className="rounded-2xl mb-6 overflow-hidden border border-white/5 group-hover:border-cyan-400/50 transition duration-500 bg-[#0a0a0a]">
+                
+                {/* 1. BROWSER BAR (Header Solid, bukan Overlay lagi) */}
+                <div className="w-full h-8 bg-[#151515] border-b border-white/5 flex items-center px-4 gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
                 </div>
-                <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10">
-                    <span className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition duration-300 shadow-lg shadow-cyan-400/20">View Detail</span>
+
+                {/* 2. AREA GAMBAR (Rasio 16:9 / Aspect Video) */}
+                <div className="relative w-full aspect-video">
+                    <img 
+                        src={project.images && project.images.length > 0 ? project.images[0] : '/project-storydesto.png'} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover" 
+                    />
+                    
+                    {/* Overlay "View Detail" muncul pas hover */}
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10">
+                        <span className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition duration-300 shadow-lg shadow-cyan-400/20">View Detail</span>
+                    </div>
                 </div>
+
               </div>
+
+              {/* JUDUL & DESKRIPSI (TETAP SAMA) */}
               <h3 className="text-2xl font-bold group-hover:text-cyan-400 transition">{project.title}</h3>
               <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-2">{project.category}</p>
               <p className="text-gray-500 text-sm line-clamp-2">{project.descShort}</p>
