@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../supabase'; // Bersih, cuma pakai Supabase
 
 function Home() {
   const [activeProject, setActiveProject] = useState(null);
@@ -8,89 +9,39 @@ function Home() {
   
   // --- DATA ARSENAL ---
   const arsenalItems = [
-    {
-      category: 'Development Stack',
-      icon: 'ph-code',
-      tools: ['Visual Studio Code', 'Vue.js Ecosystem', 'Flutter & Dart', 'Git & GitHub', 'Vercel / Hostinger', 'Tailwind CSS']
-    },
-    {
-      category: 'Photography Gear',
-      icon: 'ph-camera',
-      tools: ['Sony A7 III', 'Sony A6400', 'Sony 50mm f/1.8', 'Sigma 16mm f/1.4', 'Adobe Lightroom', 'Adobe Photoshop']
-    },
-    {
-      category: 'Video & Drone',
-      icon: 'ph-film-strip',
-      tools: ['DJI Mini 3 Pro', 'DJI Air 2S', 'Adobe Premiere Pro', 'DaVinci Resolve', 'CapCut PC']
-    }
+    { category: 'Development Stack', icon: 'ph-code', tools: ['Visual Studio Code', 'Vue.js Ecosystem', 'Flutter & Dart', 'Git & GitHub', 'Vercel / Hostinger', 'Tailwind CSS'] },
+    { category: 'Photography Gear', icon: 'ph-camera', tools: ['Sony A7 III', 'Sony A6400', 'Sony 50mm f/1.8', 'Sigma 16mm f/1.4', 'Adobe Lightroom', 'Adobe Photoshop'] },
+    { category: 'Video & Drone', icon: 'ph-film-strip', tools: ['DJI Mini 3 Pro', 'DJI Air 2S', 'Adobe Premiere Pro', 'DaVinci Resolve', 'CapCut PC'] }
   ];
 
-  // --- DATA PROJECT ---
-  const projects = [
-    {
-      id: 1,
-      title: 'Storydesto Visuals',
-      category: 'Web Dev • Creative Agency',
-      client: 'Internal Startup',
-      descShort: 'A digital marketplace connecting photography vendors with clients seamlessly.',
-      descLong: 'A comprehensive digital marketplace designed to bridge photography vendors with clients. Features include a Smart Booking System, integrated multi-payment Gateway (Midtrans), real-time vendor availability checking, and a robust Admin Dashboard.',
-      stack: ['HTML5 Semantic', 'CSS3 Modern', 'Vanilla JS (ES6+)', 'Netlify', 'SEO Optimized'],
-      images: ['/desto/coverdesto.png', '/desto/desto1.png', '/desto/desto2.png'], 
-      link: 'https://portfolio-storydesto.netlify.app/',
-      github: 'https://github.com/amdwildanabdillah/storydesto'
-    },
-    {
-      id: 2,
-      title: 'Omah Cempe',
-      category: 'Web Dev • Landing Page',
-      client: 'Omah Cempe Kediri',
-      descShort: 'A modern landing page designed to digitalize livestock investment and Aqiqah services.',
-      descLong: 'The official digital platform for Omah Cempe Kediri, designed to bridge traditional farming with modern investment opportunities. Key features include an interactive Profit Sharing Simulator for potential partners, a structured catalog for Aqiqah & Qurban services, and a trust-focused UI highlighting farm transparency. Built to enhance brand credibility and streamline client consultations.',
-      stack: ["React", "Tailwind", "Vite", "Google Maps"],
-      images: [
-        '/omahcempe/1.png', 
-        '/omahcempe/2.png',
-        '/omahcempe/3.png',
-        '/omahcempe/4.png',
-        '/omahcempe/5.png',
-      ], 
-      link: null,
-      github: null
-    },
-    {
-        id: 3, // Perbaiki ID biar urut/unik (sebelumnya ada 2 project id=2)
-        title: "Puskeswan Mobile",
-        category: "Android App",
-        client: 'Puskeswan Trenggalek',
-        descShort: "Mobile application for veterinary services management.",
-        descLong: "A dedicated mobile application designed for Puskeswan Trenggalek to manage veterinary services. It features appointment scheduling, medical record tracking for livestock, and real-time reporting for field officers.",
-        stack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL'],
-        images: ['/puskeswan/1.png', '/puskeswan/2.png'], 
-        link: null,
-        github: null,
-      },
-    {
-      id: 6,
-      title: "WildanInvites HQ (Internal Dashboard)",
-      category: "AppSheet Development",
-      client: "WildanInvites Finance (Internal Vixel)",
-      descShort: "Dedicated internal management tool for automated cashflow tracking and financial reporting.",
-      descLong: "A robust internal tool built purely on the AppSheet and Google ecosystem for WildanInvites. It automates cashflow tracking, generates real-time Profit & Loss (P&L) reports, monitors operational expenses, and manages inventory database—all without writing a single line of traditional code. This system provides instant financial clarity and streamlines operational workflows.",
-      stack: ["AppSheet", "Google Sheet", "Automation"],
-      images: [
-            '/wildaninvites/1.png', 
-            '/wildaninvites/2.png',
-            '/wildaninvites/3.png',
-            '/wildaninvites/4.png',
-            '/wildaninvites/5.png',
-            '/wildaninvites/6.png',
-            '/wildaninvites/7.png',
-            '/wildaninvites/8.png',
-          ], 
-      link: null,
-      github: null,
-    },
-  ];
+  // --- STATE DATA ---
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // --- LOGIC MENARIK DATA DARI SUPABASE ---
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+            .from('vixel_works')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        
+        setProjects(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching projects: ", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // --- LOGIC PIN TO HOME (CUMA TAMPIL MAKSIMAL 4 YANG DIPIN) ---
+  const selectedWorks = projects.filter(p => p.isPinned === true).slice(0, 4);
 
   // --- LOGIC ANIMATION ---
   useEffect(() => {
@@ -104,26 +55,23 @@ function Home() {
     });
     const hiddenElements = document.querySelectorAll('.animate-on-scroll');
     hiddenElements.forEach((el) => observer.observe(el));
+    
     return () => hiddenElements.forEach((el) => observer.unobserve(el));
-  }, []);
+  }, [projects]); 
 
-  // --- LOGIC SCROLL LOCK (BODY STYLE) - PERBAIKAN ---
+  // --- LOGIC SCROLL LOCK ---
   useEffect(() => {
     if (activeProject || showArsenal) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    return () => document.body.style.overflow = 'auto';
   }, [activeProject, showArsenal]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const getTechDetails = (techName) => {
@@ -132,63 +80,28 @@ function Home() {
     if (name.includes('react')) return { icon: 'ph-atom', color: '#61DAFB' };
     if (name.includes('vite')) return { icon: 'ph-lightning', color: '#646CFF' };
     if (name.includes('framer')) return { icon: 'ph-framer-logo', color: '#0055FF' };
-    if (name.includes('element')) return { icon: 'ph-layout', color: '#409EFF' }; 
     if (name.includes('tailwind')) return { icon: 'ph-wind', color: '#38B2AC' };
-    if (name.includes('bootstrap')) return { icon: 'ph-bootstrap-logo', color: '#7952B3' };
     if (name.includes('flutter')) return { icon: 'ph-lightning', color: '#02569B' }; 
     if (name.includes('dart')) return { icon: 'ph-brackets-angle', color: '#0175C2' }; 
-    if (name.includes('android')) return { icon: 'ph-android-logo', color: '#3DDC84' };
-    if (name.includes('laravel')) return { icon: 'ph-file-code', color: '#FF2D20' };
     if (name.includes('node')) return { icon: 'ph-nodejs-logo', color: '#339933' };
     if (name.includes('supabase')) return { icon: 'ph-database', color: '#3ECF8E' }; 
-    if (name.includes('postgresql') || name.includes('postgres')) return { icon: 'ph-database', color: '#336791' }; 
-    if (name.includes('mysql')) return { icon: 'ph-database', color: '#00758F' };
     if (name.includes('firebase')) return { icon: 'ph-fire', color: '#FFCA28' };
-    if (name.includes('vercel')) return { icon: 'ph-triangle', color: '#FFFFFF' }; 
-    if (name.includes('phosphor')) return { icon: 'ph-pencil-circle', color: '#C2E96A' }; 
     if (name.includes('html')) return { icon: 'ph-file-html', color: '#E34F26' };
     if (name.includes('css')) return { icon: 'ph-file-css', color: '#1572B6' };
     if (name.includes('javascript') || name.includes('js')) return { icon: 'ph-file-js', color: '#F7DF1E' };
-    if (name.includes('typescript') || name.includes('ts')) return { icon: 'ph-file-ts', color: '#3178C6' };
-    if (name.includes('python')) return { icon: 'ph-terminal', color: '#3776AB' };
-    if (name.includes('django')) return { icon: 'ph-stack', color: '#092E20' }; 
-    if (name.includes('flask')) return { icon: 'ph-flask', color: '#FFFFFF' };
     if (name.includes('appsheet')) return { icon: 'ph-paper-plane-tilt', color: '#4285F4' }; 
-    if (name.includes('sheet') || name.includes('excel')) return { icon: 'ph-table', color: '#0F9D58' }; 
-    if (name.includes('automation')) return { icon: 'ph-robot', color: '#FF9900' };
     if (name.includes('netlify')) return { icon: 'ph-cloud-arrow-up', color: '#00C7B7' }; 
-    if (name.includes('seo')) return { icon: 'ph-magnifying-glass', color: '#FFA500' }; 
-    if (name.includes('responsive')) return { icon: 'ph-device-mobile', color: '#B084FF' }; 
-    if (name.includes('three')) return { icon: 'ph-cube', color: '#000000' }; 
-    if (name.includes('spline')) return { icon: 'ph-bezier-curve', color: '#F854C5' }; 
-    if (name.includes('webgl')) return { icon: 'ph-globe', color: '#990000' }; 
-    if (name.includes('blender')) return { icon: 'ph-nut', color: '#E87D0D' }; 
-    if (name.includes('figma')) return { icon: 'ph-figma-logo', color: '#F24E1E' }; 
     if (name.includes('github')) return { icon: 'ph-github-logo', color: '#ffffff' }; 
-    if (name.includes('vscode')) return { icon: 'ph-laptop', color: '#23A9F2' }; 
-    if (name.includes('canva')) return { icon: 'ph-palette', color: '#00C4CC' }; 
-    if (name.includes('illustrator') || name.includes('adobe')) return { icon: 'ph-pen-nib', color: '#FF9A00' };
-    if (name.includes('font')) return { icon: 'ph-text-aa', color: '#EA4335' }; 
-    if (name.includes('google')) return { icon: 'ph-google-logo', color: '#4285F4' };
     return { icon: 'ph-code', color: '#b084ff' }; 
   }
 
-  // --- FUNGSI MODAL & SLIDER (YANG DIPERBAIKI) ---
-  const openModal = (project) => { 
-    setActiveProject(project); 
-    setCurrentImageIndex(0); 
-  };
-  
-  const closeModal = () => { 
-    setActiveProject(null); 
-  };
-  
+  const openModal = (project) => { setActiveProject(project); setCurrentImageIndex(0); };
+  const closeModal = () => { setActiveProject(null); };
   const nextImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev + 1) % activeProject.images.length); };
   const prevImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length); };
 
   return (
     <div className="pt-20 bg-[#030303] text-white min-h-screen"> 
-      
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-24 pt-10 pb-10 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[600px] md:h-[600px] bg-cyan-500/60 rounded-full blur-[90px] md:blur-[130px] animate-orb pointer-events-none z-0"></div>
@@ -242,9 +155,6 @@ function Home() {
            <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#02569B]"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">FLUTTER</span></div>
            <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#0175C2]"><path d="M4.175 0h8.773l10.875 10.89c.112.112.177.265.177.424 0 .159-.065.312-.177.424L11.666 23.9c-.112.112-.265.177-.424.177s-.312-.065-.424-.177L0 13.064V4.18C0 1.876 1.872 0 4.175 0z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">DART</span></div>
            <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#38BDF8]"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">TAILWIND</span></div>
-           <div className="flex items-center gap-3"><svg viewBox="-10.5 -9.45 21 18.9" className="w-8 h-8 text-[#61DAFB] fill-current"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" strokeWidth="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><span className="font-bold text-lg tracking-widest text-gray-300">REACT</span></div>
-           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#4285F4]"><path d="M19.423 7.18H14.83V2.46a.54.54 0 0 0-.91-.39L2.8 13.16a.54.54 0 0 0 .39.91h4.74v4.73a.54.54 0 0 0 .91.39l11-11.1a.54.54 0 0 0-.417-.91Z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">APPSHEET</span></div>
-           <div className="flex items-center gap-3"><svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#02569B]"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg><span className="font-bold text-lg tracking-widest text-gray-300">FLUTTER</span></div>
         </div>
       </div>
 
@@ -264,7 +174,7 @@ function Home() {
               <strong className="text-white">VIXEL Creative</strong> adalah studio digital hybrid yang lahir di Surabaya. Kami percaya bahwa sistem yang canggih (AppSheet/Web) tidak boleh terlihat membosankan.
             </p>
             <p>
-              Dipimpin oleh <span className="text-cyan-400 font-bold">Wildan Abdillah</span>, kami menggabungkan ketajaman <span className="italic">Logika Bisnis</span> dengan sentuhan <span className="italic">Artistik</span> dari unit visual kami. Hasilnya? Solusi digital yang tidak hanya <strong>Jalan</strong>, tapi juga <strong>Tampil Beda</strong>.
+              Dipimpin oleh <span className="text-cyan-400 font-bold">Wildan Abdillah</span>, kami menggabungkan ketajaman <span className="italic">Logika Bisnis</span> dengan sentuhan <span className="italic">Artistik</span> dari unit visual kami.
             </p>
             <div className="grid grid-cols-2 gap-8 pt-4 border-t border-white/10 mt-6">
                <div><h4 className="text-xl md:text-2xl font-bold text-white">Hybrid</h4><span className="text-[8px] uppercase tracking-widest text-gray-500">Tech + Creative</span></div>
@@ -284,8 +194,8 @@ function Home() {
           {[
             { num: "01", title: "Custom AppSheet", desc: "Ubah data spreadsheet rumit jadi aplikasi mobile yang gampang dipakai. Cocok buat Inventory, Absensi, & CRM." },
             { num: "02", title: "Web Development", desc: "Bikin website yang nggak cuma keren, tapi juga ngebut. Landing page, Company Profile, sampai Web Apps." },
-            { num: "03", title: "Android Apps", desc: "Pengembangan aplikasi mobile native (Android/iOS) menggunakan Flutter. Solusi tepat untuk produk digital performa maksimal." },
-            { num: "04", title: "Visual Branding", desc: "Sinergi dengan Storydesto & Destograph untuk kebutuhan konten visual yang selaras dengan identitas digitalmu." }
+            { num: "03", title: "Android Apps", desc: "Pengembangan aplikasi mobile native (Android/iOS) menggunakan Flutter." },
+            { num: "04", title: "Visual Branding", desc: "Sinergi dengan Storydesto & Destograph untuk kebutuhan konten visual." }
           ].map((item) => (
             <div key={item.num} className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/10 transition duration-500 group">
               <div className="text-4xl font-black text-cyan-400 md:text-white/10 mb-6 md:group-hover:text-cyan-400 transition duration-500">{item.num}</div>
@@ -307,30 +217,41 @@ function Home() {
               <Link to="/works" className="hidden md:block text-[10px] font-bold uppercase tracking-widest border-b border-cyan-400 pb-1 hover:text-cyan-400 transition">View All</Link>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-              {projects.map((project) => (
-                <div 
-                    key={project.id} 
-                    onClick={() => openModal(project)}
-                    className="group cursor-pointer animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000"
-                >
-                  <div className="h-[250px] md:h-[350px] rounded-2xl mb-6 overflow-hidden relative border border-white/5 group-hover:border-cyan-400/50 transition duration-500 bg-[#0a0a0a]">
-                    <div className="absolute top-0 left-0 w-full h-8 bg-black/60 backdrop-blur-md flex items-center px-4 gap-2 z-20 border-b border-white/5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
-                    </div>
-                    <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10">
-                        <span className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition duration-300 shadow-lg shadow-cyan-400/20">View Detail</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold group-hover:text-cyan-400 transition">{project.title}</h3>
-                  <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-cyan-400 mb-2">{project.category}</p>
-                  <p className="text-gray-500 text-xs md:text-sm line-clamp-2 leading-relaxed">{project.descShort}</p>
+            {/* --- LOADING STATE --- */}
+            {isLoading ? (
+                <div className="text-center text-cyan-400 py-10 font-bold uppercase tracking-widest">
+                   Loading Projects...
                 </div>
-              ))}
-            </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                  {selectedWorks.map((project) => (
+                    <div 
+                        key={project.id} 
+                        onClick={() => openModal(project)}
+                        className="group cursor-pointer animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000"
+                    >
+                      <div className="h-[250px] md:h-[350px] rounded-2xl mb-6 overflow-hidden relative border border-white/5 group-hover:border-cyan-400/50 transition duration-500 bg-[#0a0a0a]">
+                        <div className="absolute top-0 left-0 w-full h-8 bg-black/60 backdrop-blur-md flex items-center px-4 gap-2 z-20 border-b border-white/5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+                        </div>
+                        <img 
+                            src={project.images && project.images.length > 0 && project.images[0] !== "-" ? project.images[0] : '/placeholder-image.jpg'} 
+                            alt={project.title} 
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10">
+                            <span className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition duration-300 shadow-lg shadow-cyan-400/20">View Detail</span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold group-hover:text-cyan-400 transition">{project.title}</h3>
+                      <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-cyan-400 mb-2">{project.category}</p>
+                      <p className="text-gray-500 text-xs md:text-sm line-clamp-2 leading-relaxed">{project.descShort}</p>
+                    </div>
+                  ))}
+                </div>
+            )}
             
             <div className="mt-12 text-center md:hidden animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
                 <Link to="/works" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition duration-300 w-full">
@@ -340,7 +261,7 @@ function Home() {
          </div>
       </section>
 
-      {/* --- CONTACT SECTION (BARU) --- */}
+      {/* --- CONTACT SECTION --- */}
       <section id="contact" className="py-32 px-6 text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
         <div className="relative z-10 max-w-3xl mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
@@ -348,7 +269,7 @@ function Home() {
               Ready to <span className="text-cyan-400">Level Up?</span>
             </h2>
             <p className="text-gray-400 text-lg md:text-xl mb-10 leading-relaxed">
-              Jangan biarkan idemu menguap begitu saja. Mari kita realisasikan menjadi sistem yang efisien dan visual yang memukau.
+              Jangan biarkan idemu menguap begitu saja. Mari kita realisasikan.
             </p>
             <a 
               href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20saya%20tertarik%20untuk%20diskusi%20project." 
@@ -389,8 +310,8 @@ function Home() {
             <div className="bg-[#0a0a0a] border border-cyan-400/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl relative flex flex-col shadow-[0_0_50px_rgba(34,211,238,0.1)]" onClick={(e) => e.stopPropagation()}>
                 <button onClick={closeModal} className="absolute top-4 right-4 z-50 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-cyan-400 hover:text-black transition border border-white/10"><i className="ph ph-x text-xl"></i></button>
                 <div className="w-full bg-black relative group border-b border-white/10">
-                    <img src={activeProject.images[currentImageIndex]} alt="Preview" className="w-full h-auto max-h-[500px] object-contain bg-[#050505]" />
-                    {activeProject.images.length > 1 && (
+                    <img src={activeProject.images && activeProject.images.length > 0 && activeProject.images[currentImageIndex] !== "-" ? activeProject.images[currentImageIndex] : '/placeholder-image.jpg'} alt="Preview" className="w-full h-auto max-h-[500px] object-contain bg-[#050505]" />
+                    {activeProject.images && activeProject.images.length > 1 && (
                         <><button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full text-white hover:bg-cyan-400 hover:text-black transition flex items-center justify-center border border-white/10"><i className="ph ph-caret-left text-xl"></i></button><button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full text-white hover:bg-cyan-400 hover:text-black transition flex items-center justify-center border border-white/10"><i className="ph ph-caret-right text-xl"></i></button></>
                     )}
                 </div>
@@ -414,7 +335,7 @@ function Home() {
                             <div>
                                 <span className="text-gray-500 uppercase text-[10px] font-bold tracking-widest block mb-4">Tech Stack</span>
                                 <div className="flex flex-wrap gap-2">
-                                    {activeProject.stack.map((t) => {
+                                    {activeProject.stack && activeProject.stack.map((t) => {
                                         const details = getTechDetails(t);
                                         return (<div key={t} className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-xs hover:border-cyan-400 transition cursor-default"><i className={`ph ${details.icon} text-sm`} style={{ color: details.color }}></i><span className="text-gray-300">{t}</span></div>)
                                     })}
