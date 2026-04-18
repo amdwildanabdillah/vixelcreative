@@ -111,7 +111,7 @@ function Home() {
       {/* HERO SECTION - GOLDEN RATIO & VIEWPORT FIX */}
       <section className="relative min-h-[80vh] md:min-h-[75vh] flex flex-col justify-center px-6 py-10 md:py-16 items-center text-center">
         <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[700px] md:h-[700px] bg-cyan-500/40 md:bg-cyan-500/20 rounded-full blur-[90px] md:blur-[150px] animate-orb pointer-events-none z-0"></div>
-        <div className="relative z-10 max-w-4xl container mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 mt-[-2rem] md:mt-0">
+        <div className="relative z-10 max-w-4xl container mx-auto transition-all duration-1000 mt-[-2rem] md:mt-0 animate-fade-in-up">
           <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase text-cyan-400 mb-6 block">Software House Surabaya</span>
           
           {/* Headline Scaled & Balanced */}
