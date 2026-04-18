@@ -38,7 +38,7 @@ function Navbar() {
         <Link to="/works" className="hover:text-cyan-400 transition">WORK</Link>
       </div>
 
-      <a href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20Saya%20tertarik%20untuk%20berdisuksi%20project%20!" target="_blank" className="hidden md:block text-[10px] font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition">
+      <a href="https://wa.me/62882232053253?text=Halo%20VIXEL,%20Saya%20tertarik%20untuk%20berdisuksi%20project%20!" target="_blank" className="hidden md:block text-[10px] font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition">
         LET'S TALK
       </a>
 

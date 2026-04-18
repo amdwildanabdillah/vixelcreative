@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../supabase'; // Pastiin path supabase.js lo bener
+import { supabase } from '../supabase'; 
 
 function Works() {
   const [activeProject, setActiveProject] = useState(null);
@@ -12,8 +12,27 @@ function Works() {
 
   // --- FETCH DATA DARI SUPABASE ---
   useEffect(() => {
-    getProjects();
+    // 1. Suruh scroll ke atas
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    }); 
+    
+    // 2. Baru panggil data
+    getProjects(); 
   }, []);
+
+  // --- CLEANUP MODAL SCROLL ---
+  useEffect(() => {
+    // Pastikan scroll kembali normal saat komponen unmount atau modal tertutup
+    if (!activeProject) {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [activeProject]);
 
   async function getProjects() {
     setIsLoading(true);
@@ -81,7 +100,7 @@ function Works() {
   }
 
   const openModal = (project) => { setActiveProject(project); setCurrentImageIndex(0); document.body.style.overflow = 'hidden'; };
-  const closeModal = () => { setActiveProject(null); document.body.style.overflow = 'auto'; };
+  const closeModal = () => { setActiveProject(null); }; // Override overflow pindah ke useEffect
   const nextImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev + 1) % activeProject.images.length); };
   const prevImage = (e) => { e.stopPropagation(); if (activeProject) setCurrentImageIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length); };
 
@@ -98,8 +117,10 @@ function Works() {
     <section className="pt-32 bg-[#030303] text-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4">All Projects<span className="text-cyan-400">.</span></h1>
-        <p className="text-gray-400 mb-12 max-w-xl">
-            Kumpulan karya terpilih yang menggabungkan logika kode dengan estetika visual. Klik project untuk melihat detailnya.
+        
+        {/* SEO OPTIMIZED TEXT */}
+        <p className="text-gray-400 mb-12 max-w-xl leading-relaxed">
+            Kumpulan karya terpilih dari <strong>Vixel Creative Surabaya</strong>. Kami mengembangkan solusi digital mulai dari <strong>Web Development</strong>, <strong>Mobile App</strong>, hingga sistem <strong>AppSheet</strong> untuk scale-up bisnis Anda.
         </p>
 
         {/* --- FILTER TABS --- */}
@@ -120,8 +141,27 @@ function Works() {
         </div>
         
         {isLoading ? (
-          <div className="flex justify-center py-20"><i className="ph ph-spinner-gap text-4xl animate-spin text-cyan-400"></i></div>
+          /* SKELETON LOADING UI */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="animate-pulse">
+                <div className="rounded-2xl mb-6 bg-[#0a0a0a] border border-white/5 overflow-hidden">
+                  <div className="w-full h-8 bg-[#151515] border-b border-white/5 flex items-center px-4 gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                  </div>
+                  <div className="w-full aspect-video bg-white/5"></div>
+                </div>
+                <div className="h-6 bg-white/10 rounded-md w-3/4 mb-3"></div>
+                <div className="h-3 bg-white/10 rounded-md w-1/4 mb-4"></div>
+                <div className="h-3 bg-white/5 rounded-md w-full mb-2"></div>
+                <div className="h-3 bg-white/5 rounded-md w-5/6"></div>
+              </div>
+            ))}
+          </div>
         ) : (
+          /* ACTUAL PROJECTS DATA */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {filteredProjects.map((project) => (
               <div key={project.id} onClick={() => openModal(project)} className="group cursor-pointer animate-fade-in-up">
@@ -135,7 +175,9 @@ function Works() {
                       <img 
                           src={project.images && project.images.length > 0 ? project.images[0] : '/project-storydesto.png'} 
                           alt={project.title} 
-                          className="w-full h-full object-cover" 
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding='async'
                       />
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10">
                           <span className="bg-cyan-400 text-black px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition duration-300 shadow-lg shadow-cyan-400/20">View Detail</span>
@@ -177,7 +219,7 @@ function Works() {
             <div className="bg-[#0a0a0a] border border-cyan-400/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl relative flex flex-col shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <button onClick={closeModal} className="absolute top-4 right-4 z-50 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-cyan-400 hover:text-black transition border border-white/10"><i className="ph ph-x text-xl"></i></button>
                 <div className="w-full bg-black relative group border-b border-white/10">
-                    <img src={activeProject.images[currentImageIndex]} alt="Preview" className="w-full h-auto max-h-[500px] object-contain bg-[#050505]" />
+                    <img src={activeProject.images[currentImageIndex]} alt="Preview" decoding="async" className="w-full h-auto max-h-[500px] object-contain bg-[#050505]" />
                     {activeProject.images.length > 1 && (
                         <><button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full text-white hover:bg-cyan-400 hover:text-black transition flex items-center justify-center border border-white/10"><i className="ph ph-caret-left text-xl"></i></button><button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full text-white hover:bg-cyan-400 hover:text-black transition flex items-center justify-center border border-white/10"><i className="ph ph-caret-right text-xl"></i></button></>
                     )}

@@ -109,10 +109,9 @@ function Home() {
     <div className="pt-24 bg-[#030303] text-white min-h-screen font-sans"> 
       
       {/* HERO SECTION - GOLDEN RATIO & VIEWPORT FIX */}
-      <section className="relative min-h-[80vh] md:min-h-[75vh] flex flex-col justify-center px-6 py-10 md:py-16 overflow-hidden container mx-auto items-center text-center">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[700px] md:h-[700px] bg-cyan-500/20 rounded-full blur-[100px] md:blur-[150px] animate-orb pointer-events-none z-0"></div>
-
-        <div className="relative z-10 max-w-4xl animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 mt-[-2rem] md:mt-0">
+      <section className="relative min-h-[80vh] md:min-h-[75vh] flex flex-col justify-center px-6 py-10 md:py-16 items-center text-center">
+        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[700px] md:h-[700px] bg-cyan-500/40 md:bg-cyan-500/20 rounded-full blur-[90px] md:blur-[150px] animate-orb pointer-events-none z-0"></div>
+        <div className="relative z-10 max-w-4xl container mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 mt-[-2rem] md:mt-0">
           <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase text-cyan-400 mb-6 block">Software House Surabaya</span>
           
           {/* Headline Scaled & Balanced */}
@@ -233,7 +232,7 @@ function Home() {
         <div className="relative z-10 max-w-3xl mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
             <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter mb-8">Ready to <span className="text-cyan-400">Level Up?</span></h2>
             <p className="text-gray-400 text-lg md:text-xl mb-10 leading-relaxed">Jangan biarkan idemu menguap begitu saja. Mari kita realisasikan menjadi sistem yang efisien dan visual yang memukau.</p>
-            <a href="https://wa.me/6285232351908?text=Halo%20VIXEL,%20saya%20tertarik%20untuk%20diskusi%20project." target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-cyan-400 hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)]">Start Project via WhatsApp <i className="ph-fill ph-whatsapp-logo text-xl"></i></a>
+            <a href="https://wa.me/6282232053253?text=Halo%20VIXEL,%20saya%20tertarik%20untuk%20diskusi%20project." target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-cyan-400 hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)]">Start Project via WhatsApp <i className="ph-fill ph-whatsapp-logo text-xl"></i></a>
         </div>
       </section>
 

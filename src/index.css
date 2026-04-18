@@ -29,3 +29,12 @@
 }
 
 /* BAGIAN HOVER PAUSED SUDAH DIHAPUS */
+
+@keyframes progress-bar {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(0.5); }
+  100% { transform: scaleX(1); }
+}
+.animate-progress-bar {
+  animation: progress-bar 2s ease-in-out forwards;
+}
